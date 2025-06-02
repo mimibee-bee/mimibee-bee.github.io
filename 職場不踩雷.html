@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職場不踩雷：新鮮人必備的職場倫理與法律意識</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            max-width: 300px;
+            margin: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-width: 350px;
+            }
+        }
+        .nav-link {
+            transition: all 0.3s;
+        }
+        .nav-link.active {
+            color: #0d9488;
+            border-bottom: 2px solid #0d9488;
+        }
+        .scenario-option {
+            transition: all 0.2s ease-in-out;
+        }
+        .scenario-option:hover {
+            transform: translateY(-2px);
+            border-color: #0d9488;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .principle-card {
+            transition: all 0.3s ease-in-out;
+            border-width: 2px;
+            border-color: transparent;
+        }
+        .principle-card.highlight {
+            border-color: #0d9488;
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-800">
+
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <h1 class="text-lg md:text-xl font-bold text-teal-700">職場不踩雷</h1>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#ethics" class="nav-link text-stone-600 hover:text-teal-600 pb-1">倫理核心</a>
+                    <a href="#scenarios" class="nav-link text-stone-600 hover:text-teal-600 pb-1">情境挑戰</a>
+                    <a href="#rights" class="nav-link text-stone-600 hover:text-teal-600 pb-1">權益寶典</a>
+                    <a href="#risks" class="nav-link text-stone-600 hover:text-teal-600 pb-1">風險預警</a>
+                    <a href="#resources" class="nav-link text-stone-600 hover:text-teal-600 pb-1">求助資源</a>
+                </div>
+                <div class="md:hidden">
+                    <select id="mobile-nav" class="bg-white border border-stone-300 rounded-md p-2 text-stone-700">
+                        <option value="#ethics">倫理核心</option>
+                        <option value="#scenarios">情境挑戰</option>
+                        <option value="#rights">權益寶典</option>
+                        <option value="#risks">風險預警</option>
+                        <option value="#resources">求助資源</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:py-12">
+
+        <section id="intro" class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-teal-800 mb-4">職場不踩雷</h2>
+            <p class="text-lg md:text-xl text-stone-600 max-w-3xl mx-auto">新鮮人必備的職場倫理與法律意識，助你穩健踏出職涯第一步。</p>
+        </section>
+
+        <section id="ethics" class="py-12 md:py-16 scroll-mt-16">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold mb-3">倫理核心：建立你的職場指南針</h3>
+                <p class="text-stone-600 max-w-2xl mx-auto">本區塊將介紹職場倫理的四大核心原則。你可以點擊下方的圖表區塊或卡片，來深入了解每一個原則的具體內涵與實踐方法。這將是你在面對複雜職場狀況時，做出正確判斷的基礎。</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="chart-container">
+                    <canvas id="ethicsChart"></canvas>
+                </div>
+                <div class="space-y-4" id="principles-container">
+                    <div id="principle-0" class="principle-card bg-white p-5 rounded-lg shadow-sm">
+                        <h4 class="text-xl font-bold text-teal-700 mb-2">誠信 (Integrity)</h4>
+                        <p class="text-stone-600">做事真誠，不作弊或欺瞞。包含不浮報費用、不虛報業績、不提供不實資訊。</p>
+                    </div>
+                    <div id="principle-1" class="principle-card bg-white p-5 rounded-lg shadow-sm">
+                        <h4 class="text-xl font-bold text-teal-700 mb-2">責任 (Responsibility)</h4>
+                        <p class="text-stone-600">對自己的工作成果與行為負責。包含準時完成任務、勇於承擔錯誤、積極解決問題。</p>
+                    </div>
+                    <div id="principle-2" class="principle-card bg-white p-5 rounded-lg shadow-sm">
+                        <h4 class="text-xl font-bold text-teal-700 mb-2">尊重 (Respect)</h4>
+                        <p class="text-stone-600">尊重同事、主管、客戶與公司的多元性。避免歧視、職場霸凌，並尊重不同意見。</p>
+                    </div>
+                    <div id="principle-3" class="principle-card bg-white p-5 rounded-lg shadow-sm">
+                        <h4 class="text-xl font-bold text-teal-700 mb-2">保密 (Confidentiality)</h4>
+                        <p class="text-stone-600">不洩漏公司機密與內部資料。包含客戶名單、產品設計、財務報表、行銷策略等。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="scenarios" class="py-12 md:py-16 bg-white rounded-xl shadow-lg scroll-mt-16">
+            <div class="text-center mb-12 px-4">
+                <h3 class="text-2xl md:text-3xl font-bold mb-3">情境挑戰：測測你的職場應變力</h3>
+                 <p class="text-stone-600 max-w-2xl mx-auto">這裡是你的虛擬職場訓練場。我們將呈現幾個新鮮人最常遇到的倫理與法律難題，請選擇你認為最恰當的處理方式。完成選擇後，系統將提供該選項可能帶來的結果分析，幫助你學習如何在真實情境中做出最佳決策。</p>
+            </div>
+            <div id="scenario-container" class="max-w-3xl mx-auto px-4">
+            </div>
+        </section>
+
+        <section id="rights" class="py-12 md:py-16 scroll-mt-16">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold mb-3">權益寶典：不可不知的法律常識</h3>
+                <p class="text-stone-600 max-w-2xl mx-auto">了解你的勞動權益是自我保護的第一步。這裡整理了從工時、薪資到智慧財產權等關鍵法律知識。請點擊各個項目來展開詳細內容，建立完整的法律防護網，確保你的權益不受侵害。</p>
+            </div>
+            <div id="accordion-container" class="max-w-3xl mx-auto space-y-3">
+            </div>
+        </section>
+
+        <section id="risks" class="py-12 md:py-16 bg-rose-50 rounded-xl scroll-mt-16">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold text-rose-800 mb-3">風險預警：避開職場三大地雷</h3>
+                 <p class="text-stone-600 max-w-2xl mx-auto">有些行為看似無傷大雅，卻可能讓你陷入巨大的法律風險中。這裡有幾個常見的職場地雷，並說明其潛在的嚴重後果。提高警覺，能幫助你避開這些可能影響職涯的陷阱。</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-rose-500">
+                    <h4 class="text-xl font-bold text-rose-700 mb-2">⚠️ LINE群組洩密</h4>
+                    <p class="text-stone-600">在即時通訊軟體上的對話，即使是私人群組，也可能成為洩漏公司營業秘密的證據，面臨民事求償甚至刑事責任。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-rose-500">
+                    <h4 class="text-xl font-bold text-rose-700 mb-2">⚠️ 幫主管私下接案</h4>
+                    <p class="text-stone-600">此舉可能違反你與公司的勞動契約（如競業禁止條款），甚至構成刑法上的背信罪，切勿因人情壓力而觸法。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-rose-500">
+                    <h4 class="text-xl font-bold text-rose-700 mb-2">⚠️ 簽署不合理文件</h4>
+                    <p class="text-stone-600">無論是空白合約、自願離職書或任何不合理的條款，簽署前都應仔細審閱並尋求專業意見，切勿輕易簽名。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="py-12 md:py-16 scroll-mt-16">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold mb-3">求助資源：你不是一個人</h3>
+                 <p class="text-stone-600 max-w-2xl mx-auto">當你在職場上遇到倫理或法律問題時，請記得尋求協助。以下提供幾個重要的官方與民間資源，它們能提供專業的諮詢與支持，幫助你度過難關。</p>
+            </div>
+            <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-sm">
+                <ul class="space-y-4 text-stone-700">
+                    <li class="flex items-center">
+                        <span class="mr-3 text-teal-600">🏛️</span>
+                        <a href="https://www.mol.gov.tw/" target="_blank" class="hover:underline">勞動部官網: 提供最新法規與政策資訊。</a>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="mr-3 text-teal-600">📞</span>
+                        <span>勞資糾紛申訴專線：1955</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="mr-3 text-teal-600">⚖️</span>
+                         <a href="https://www.laf.org.tw/" target="_blank" class="hover:underline">法律扶助基金會：為符合資格者提供免費法律諮詢。</a>
+                     </li>
+                    <li class="flex items-center">
+                        <span class="mr-3 text-teal-600">⚖️</span>
+                         <a href="https://www.airroc.org.tw/article/27/1 " target="_blank" class="hover:underline">職場求生懶人包</a>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="mr-3 text-teal-600">🏢</span>
+                        <span>各縣市勞工局（處）：提供在地勞動權益諮詢與申訴管道。</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-800 text-white text-center p-4">
+        <p>&copy; 2025 職場倫理與法律常識. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const scenarios = [
+                {
+                    question: "你是新人，在實習中發現主管請你幫忙處理「前期工程的資料造假」。你該怎麼辦？",
+                    options: [
+                        { text: "勉強同意，擔心拒絕會影響實習評價。", feedback: "這可能使你成為共犯，涉及偽造文書罪，不僅影響個人聲譽，更可能面臨法律責任。短期利益不值得冒此風險。" },
+                        { text: "婉轉表達疑慮，並詢問是否有其他合規的處理方式。", feedback: "這是較佳的第一步。既表達了你的原則，也給予主管轉圜的餘地，同時保護了自己。若主管堅持，你應考慮向上呈報。" },
+                        { text: "直接向公司更高層級或人資部門舉報。", feedback: "這是保護公司與自己的最終手段。雖然可能造成職場關係緊張，但在大是大非面前是必要的。建議先嘗試溝通，若無效再採取此行動。" }
+                    ]
+                },
+                {
+                    question: "你的同事拜託你幫他打卡，因為他今天會遲到。你會？",
+                    options: [
+                        { text: "幫忙，畢竟同事之間應該互相協助。", feedback: "幫同事代打卡屬於偽造出勤紀錄，是一種不誠實的行為，違反了職場倫理的誠信原則。被發現後可能導致雙方都受到公司懲處。" },
+                        { text: "拒絕，並委婉地告訴他這樣做不符合公司規定。", feedback: "這是正確的選擇。堅守原則雖然可能讓人覺得不近人情，但卻是保護自己與維持職場秩序的必要之舉。" },
+                        { text: "假裝沒聽到，讓他自己想辦法。", feedback: "雖然避免了直接衝突，但並未解決問題。最好的方式是明確表達自己的立場，建立清晰的界線。" }
+                    ]
+                },
+                {
+                    question: "你在公司內部群組看到同事分享了公司未公開的專案資料，並發表負面評論。你會？",
+                    options: [
+                        { text: "跟著一起評論，表達自己的看法。", feedback: "這會加劇資訊洩漏的風險，並可能使你也成為違反保密義務的一員。在公開群組討論敏感資訊極不專業。" },
+                        { text: "私下提醒該同事，這樣的行為可能違反保密協議。", feedback: "這是兼顧同事關係與公司利益的成熟做法。既提醒了對方風險，也避免了公開指責的尷尬。" },
+                        { text: "立刻截圖向主管或人資部門報告。", feedback: "如果情況嚴重，可能損害公司重大利益，這是一個負責任的選擇。此舉動展示了你對公司資產的保護意識。" }
+                    ]
+                }
+            ];
+            let currentScenario = 0;
+            const scenarioContainer = document.getElementById('scenario-container');
+
+            function displayScenario() {
+                const s = scenarios[currentScenario];
+                let optionsHtml = s.options.map((opt, index) =>
+                    `<div class="scenario-option bg-stone-50 border-2 border-stone-200 p-4 rounded-lg mb-3 cursor-pointer" data-feedback="${opt.feedback}">
+                        <p>${opt.text}</p>
+                    </div>`
+                ).join('');
+
+                scenarioContainer.innerHTML = `
+                    <div class="bg-teal-50 p-6 rounded-lg shadow-inner mb-6">
+                        <h4 class="text-lg font-semibold mb-2">情境 ${currentScenario + 1}/${scenarios.length}</h4>
+                        <p class="text-stone-700">${s.question}</p>
+                    </div>
+                    <div id="options-container">${optionsHtml}</div>
+                    <div id="feedback-container" class="mt-4 hidden p-4 bg-amber-50 border-l-4 border-amber-400 text-amber-800 rounded-r-lg"></div>
+                    <div class="mt-6 text-right">
+                        <button id="next-scenario" class="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition-colors disabled:bg-stone-300" disabled>下一題</button>
+                    </div>
+                `;
+
+                document.querySelectorAll('.scenario-option').forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        const feedbackContainer = document.getElementById('feedback-container');
+                        feedbackContainer.textContent = e.currentTarget.dataset.feedback;
+                        feedbackContainer.classList.remove('hidden');
+                        
+                        document.querySelectorAll('.scenario-option').forEach(opt => {
+                            opt.style.pointerEvents = 'none';
+                            opt.classList.remove('border-teal-500');
+                            opt.classList.add('opacity-60');
+                        });
+                        e.currentTarget.classList.add('border-teal-500');
+                        e.currentTarget.classList.remove('opacity-60');
+
+                        document.getElementById('next-scenario').disabled = false;
+                    });
+                });
+
+                document.getElementById('next-scenario').addEventListener('click', () => {
+                    currentScenario = (currentScenario + 1) % scenarios.length;
+                    displayScenario();
+                });
+            }
+
+            const accordionItems = [
+                { title: '工時與加班費', content: '法定正常工時為每日8小時，每週40小時。超過部分應依法計算加班費。雇主不得強迫加班，加班需經勞工同意。' },
+                { title: '試用期規定', content: '勞基法中並無「試用期」的明確法律規定，試用期內的勞工仍受勞基法所有保障。雇主若要解僱試用期員工，仍需有正當理由（如無法勝任工作），並依法給付資遣費。' },
+                { title: '雇主不得任意解僱', content: '雇主解僱勞工需符合勞基法規定的法定事由，如勞工違反勞動契約或工作規則情節重大，或因公司虧損、業務緊縮等。不能因性別、懷孕、提出申訴等理由解僱。' },
+                { title: '工資發放與特休假', content: '工資應全額、定期、直接給付。特休假依勞工年資給予，勞工有權排定自己的特休，雇主不得拒絕。' },
+                { title: '智慧財產權與保密義務', content: '員工在職期間完成的職務上創作，若無特別約定，著作權歸員工，但公司有權利用。離職後，未經授權不得帶走或使用公司客戶名單、技術資料等，否則可能觸犯營業秘密法。' },
+                { title: '簽訂合約注意事項', content: '務必詳閱合約所有條款，特別是薪資、工時、工作內容、離職與競業禁止條款。切勿簽署空白合約。有疑問應立即提出，必要時可尋求法律諮詢。' }
+            ];
+            const accordionContainer = document.getElementById('accordion-container');
+            accordionContainer.innerHTML = accordionItems.map((item, index) => `
+                <div class="bg-white rounded-lg shadow-sm">
+                    <button class="accordion-button w-full flex justify-between items-center text-left p-4 font-semibold text-stone-700">
+                        <span>${item.title}</span>
+                        <span class="accordion-icon text-teal-600 text-xl">+</span>
+                    </button>
+                    <div class="accordion-content px-4 pb-4 text-stone-600">
+                        ${item.content}
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.accordion-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('.accordion-icon');
+                    const isOpening = content.style.maxHeight === '0px' || !content.style.maxHeight;
+                    
+                    document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = '0px');
+                    document.querySelectorAll('.accordion-icon').forEach(i => i.textContent = '+');
+                    
+                    if (isOpening) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.textContent = '-';
+                    }
+                });
+            });
+
+            const ethicsChartCtx = document.getElementById('ethicsChart').getContext('2d');
+            const ethicsChart = new Chart(ethicsChartCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['誠信', '責任', '尊重', '保密'],
+                    datasets: [{
+                        label: '四大職場倫理原則',
+                        data: [1, 1, 1, 1],
+                        backgroundColor: [
+                            'rgba(13, 148, 136, 0.7)',
+                            'rgba(15, 118, 110, 0.7)',
+                            'rgba(17, 94, 89, 0.7)',
+                            'rgba(19, 78, 74, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(13, 148, 136, 1)',
+                            'rgba(15, 118, 110, 1)',
+                            'rgba(17, 94, 89, 1)',
+                            'rgba(19, 78, 74, 1)'
+                        ],
+                        borderWidth: 1,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        tooltip: {
+                            enabled: true
+                        }
+                    },
+                    onClick: (event, elements) => {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const card = document.getElementById(`principle-${index}`);
+                            
+                            document.querySelectorAll('.principle-card').forEach(c => c.classList.remove('highlight'));
+                            card.classList.add('highlight');
+                            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            
+                            setTimeout(() => {
+                                card.classList.remove('highlight');
+                            }, 2000);
+                        }
+                    }
+                }
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 80) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            document.getElementById('mobile-nav').addEventListener('change', function() {
+                window.location.hash = this.value;
+            });
+
+            displayScenario();
+        });
+    </script>
+</body>
+</html>
